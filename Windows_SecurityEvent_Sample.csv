@@ -1,9 +1,0 @@
-﻿TenantId,TimeGenerated [UTC],SourceSystem,Account,AccountType,Computer,EventSourceName,Channel,Task,Level,EventData,EventID,Activity,SourceComputerId,EventOriginId,MG,TimeCollected [UTC],ManagementGroupName,OperationType,SubjectAccount,SubjectDomainName,SubjectKeyIdentifier,SubjectLogonId,SubjectUserName,SubjectUserSid,Type,_ResourceId
-00000000-0000-0000-0000-000000000000,"4/23/2023, 6:22:42.178 PM",OpsManager,,,DC1.kustoworks.com,Microsoft-Windows-Eventlog,Security,1,4,"<UserData xmlns=""http://schemas.microsoft.com/win/2004/08/events/event"">
-  <LogFileCleared xmlns=""http://manifests.microsoft.com/win/2004/08/windows/eventlog"">
-    <SubjectUserSid>S-1-5-21-2496762881-1366215883-1809657155-500</SubjectUserSid>
-    <SubjectUserName>Administrator</SubjectUserName>
-    <SubjectDomainName>KUSTOWORKS</SubjectDomainName>
-    <SubjectLogonId>0x1ad0fc</SubjectLogonId>
-  </LogFileCleared>
-</UserData>",1102,1102 - The audit log was cleared.,cc046e6c-795c-47b2-a5ae-c9a0645e6d32,cc046e6c-795c-47b2-a5ae-c9a0645e6d33,00000000-0000-0000-0000-000000000001,"4/23/2023, 6:26:00.767 PM",AOI-00000000-0000-0000-0000-000000000000,,,,,,,,SecurityEvent,/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/kustoworksarc/providers/microsoft.hybridcompute/machines/dc1
