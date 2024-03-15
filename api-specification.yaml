@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: WeatherInfoPlugin
+  version: 1.0.0
+  description: This plugin fetches weather information for a specified location using the OpenWeatherMap API.
+servers:
+  - url: https://api.openweathermap.org/data/2.5/weather
+paths:
+  /:
+    get:
+      summary: Get current weather for a specified city
+      operationId: getWeatherByCity
+      parameters:
+        - name: q
+          in: query
+          description: Name of the city for which to fetch weather information
+          required: true
+          schema:
+            type: string
+        - name: units
+          in: query
+          description: Units of measurement. Standard, metric, and imperial units are available.
+          required: false
+          schema:
+            type: string
+            default: metric
+        - name: appid
+          in: query
+          description: Your API key for authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  temperature:
+                    type: number
+                    description: Current temperature
+                  weather_condition:
+                    type: string
+                    description: General description of the current weather condition
+                  humidity:
+                    type: number
+                    description: Current humidity level
+                  wind_speed:
+                    type: number
+                    description: Current wind speed
+        '401':
+          description: Unsuccessful authentication, invalid API key
+        '404':
+          description: The requested city is not found
