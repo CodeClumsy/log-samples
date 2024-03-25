@@ -1,0 +1,93 @@
+openapi: 3.0.0
+info:
+  title: BasicAPI
+  version: 1.0.2
+  description: returns a response containing asset details
+servers:
+  - url: https://staging.argosecure.com/
+paths:
+  /api/globalassets/c4e1d8cb-43ab-4cf0-aefd-fc472c0e808c:
+    get:
+      operationId: BasicApiRequest
+      summary: get asset details
+      responses:
+        '200':
+          description: returns a response containing asset details
+          content:
+            application/json: 
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    applicationIds:
+                      type: object
+                      additionalProperties:
+                        type: boolean
+                    dataSources:
+                      type: array
+                      items:
+                        type: string
+                    assetName:
+                      type: string
+                    ipAddresses:
+                      type: array
+                      items:
+                        type: string
+                    externalIpAddresses:
+                      type: 'null'
+                    macAddresses:
+                      type: array
+                      items:
+                        type: string
+                    lastSeenTimeStamp:
+                      type: number
+                    lastSeenDate:
+                      type: string
+                    lastKnownUsers:
+                      type: array
+                      items:
+                        type: string
+                    machineType:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          normalizedName:
+                            type: string
+                          fullName:
+                            type: string
+                          dataSource:
+                            type: string
+                    machineOs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          normalizedName:
+                            type: string
+                          fullName:
+                            type: string
+                          dataSource:
+                            type: string
+                    description:
+                      type: array
+                      items:
+                        type: string
+                    groupedBy:
+                      type: array
+                      items:
+                        type: string
+                    securityMonitoring:
+                      type: boolean
+                    backupManagement:
+                      type: boolean
+                    vulnerabilityScanning:
+                      type: boolean
+                    assetManagement:
+                      type: boolean
+                    assetScore:
+                      type: number
+
+        '401':
+          description: Argo response indicates your business division is incorrect for this call. Contact vendor.
