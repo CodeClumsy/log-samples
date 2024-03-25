@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: Argo Copilot Test
+  version: 1.0.0
+servers:
+  - url: https://staging.argosecure.com
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+paths:
+  /api/globalassets/{tenantId}:
+    get:
+      tags:
+        - default
+      summary: GlobalAssetsTemp
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: tenantId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
