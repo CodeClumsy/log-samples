@@ -1,22 +1,22 @@
 openapi: 3.0.0
 info:
   title: Get Asset List
-  version: 2.0.2
-  description: Gets a list of all assets and endpoints
+  version: "v1"
+  description: A free IP Lookup API
 servers:
   - url: https://staging.argosecure.com/
 paths:
   /api/globalassets/{ipaddress}:
     get:
-      operationId: GetAssetList
-      summary: get a list of all assets and endpoints
+      operationId: lookupIpAddressGeolocation
+      summary: Lookup ipaddress geolocation information
       parameters:
           - in: path
             name: ipaddress
             schema:
                 type: string
             required: true
-            description: The ipaddress where your assets are stored within the Argo platform.
+            description: The ip address to lookup
 
       responses:
         '200':
