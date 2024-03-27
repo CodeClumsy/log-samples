@@ -46,7 +46,7 @@ paths:
                         type: string
                       description: "List of IPv4 or IPv6 addresses associated with the asset."
                     externalIpAddresses:
-                      type: 'null'
+                      type: string
                       description: "Intended to hold external IP addresses, currently not applicable or used (hence null)."
                     macAddresses:
                       type: array
