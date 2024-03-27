@@ -16,7 +16,7 @@ paths:
             schema:
                 type: string
             required: true
-            description: The tenantId where your assets are stored within the Argo platform.
+            description: The ipaddress where your assets are stored within the Argo platform.
 
       responses:
         '200':
