@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Get Asset List
-  version: 1.0.2
+  version: 1.0.3
   description: Gets a list of all assets and endpoints
 servers:
   - url: https://staging.argosecure.com/
