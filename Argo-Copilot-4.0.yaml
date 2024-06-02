@@ -2,14 +2,14 @@ openapi: 3.0.1
 info:
   title: Get Asset List
   version: 1.0.4
-  description: Gets a list of all assets and endpoints
+  description: Multiple endpoints relating to asset data.
 servers:
   - url: https://staging.argosecure.com/
 paths:
   /api/globalassets/{tenantId}:
     get:
       operationId: GetAssetList
-      summary: various endpoints related to asset data.
+      summary: Get a list of all assets and endpoints
       parameters:
           - in: path
             name: tenantId
