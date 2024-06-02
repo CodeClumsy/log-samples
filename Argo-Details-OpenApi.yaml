@@ -29,7 +29,7 @@ paths:
                     type: string
                   description: "Application identifiers sourced from the corresponding key in the globalassets GET endpoint."
                   default: 
-                    - ["833"]
+                    - "833"
       responses:
         '200':
           description: "Returns a list of vulnerabilities associated with the asset."
