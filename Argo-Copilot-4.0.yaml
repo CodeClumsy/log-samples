@@ -9,7 +9,7 @@ paths:
   /api/globalassets/{tenantId}:
     get:
       operationId: GetAssetList
-      summary: get a list of all assets and endpoints
+      summary: various endpoints related to asset data.
       parameters:
           - in: path
             name: tenantId
