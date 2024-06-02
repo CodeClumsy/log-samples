@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: Get Asset List
+  version: 1.0.4
+  description: Gets a list of all assets and endpoints
+servers:
+  - url: https://staging.argosecure.com/
+paths:
+  /api/globalassets/{tenantId}:
+    get:
+      operationId: GetAssetList
+      summary: get a list of all assets and endpoints
+      parameters:
+          - in: path
+            name: tenantId
+            schema:
+                type: string
+            required: true
+            description: The Tenant ID to provide for the API call.
+      responses:
+        '200':
+          description: gets a list of all assets and endpoints
+          content:
+            application/json: 
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    applicationIds:
+                      type: object
+                      additionalProperties:
+                        type: boolean
+                      description: "A mapping of application identifiers to a boolean value, typically indicating presence or relevance."
+                    dataSources:
+                      type: array
+                      items:
+                        type: string
+                      description: "List of data source names or identifiers from which this information was compiled."
+                    assetName:
+                      type: string
+                      description: "The name of the asset, typically a hostname, device name, or another identifier."
+                    ipAddresses:
+                      type: array
+                      items:
+                        type: string
+                      description: "List of IPv4 or IPv6 addresses associated with the asset."
+                    externalIpAddresses:
+                      type: string
+                      description: "Intended to hold external IP addresses, currently not applicable or used (hence null)."
+                    macAddresses:
+                      type: array
+                      items:
+                        type: string
+                      description: "List of MAC (Media Access Control) addresses associated with the asset's network interfaces."
+                    lastSeenTimeStamp:
+                      type: number
+                      description: "The last timestamp when the asset was seen, typically represented as a Unix timestamp."
+                    lastSeenDate:
+                      type: string
+                      description: "The last date when the asset was seen, typically in ISO 8601 format."
+                    lastKnownUsers:
+                      type: array
+                      items:
+                        type: string
+                      description: "List of user identifiers or names last known to be associated with the asset."
+                    machineType:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          normalizedName:
+                            type: string
+                            description: "A normalized name for the machine type, typically a simplified or standardized identifier."
+                          fullName:
+                            type: string
+                            description: "The full name of the machine type, providing a more descriptive identification."
+                          dataSource:
+                            type: string
+                            description: "The source from which the machine type information was retrieved or inferred."
+                      description: "An array of objects representing different types or classifications of the machine."
+                    machineOs:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          normalizedName:
+                            type: string
+                            description: "A normalized name for the operating system, typically a simplified or standardized identifier."
+                          fullName:
+                            type: string
+                            description: "The full, descriptive name of the operating system running on the machine."
+                          dataSource:
+                            type: string
+                            description: "The source from which the operating system information was retrieved or inferred."
+                      description: "An array of objects representing the operating systems running on the machine."
+                    description:
+                      type: array
+                      items:
+                        type: string
+                      description: "An array of strings providing descriptive information about the asset."
+                    groupedBy:
+                      type: array
+                      items:
+                        type: string
+                      description: "An array of criteria or attributes by which the assets are grouped in the response."
+                    securityMonitoring:
+                      type: boolean
+                      description: "Indicates whether security monitoring is active for the asset."
+                    backupManagement:
+                      type: boolean
+                      description: "Indicates whether backup management is active or implemented for the asset."
+                    vulnerabilityScanning:
+                      type: boolean
+                      description: "Indicates whether vulnerability scanning is active or has been performed on the asset."
+                    assetManagement:
+                      type: boolean
+                      description: "Indicates whether asset management practices are active or implemented for the asset."
+                    assetScore:
+                      type: number
+                      description: "A numerical score representing the asset's importance, risk level, or another metric."
+        '401':
+          description: Unauthorized
+  /api/globalassetdetails:
+    post:
+      operationId: GetAssetDetails
+      summary: Retrieves detailed information about a specific asset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tenantId:
+                  type: string
+                  description: "The Tenant ID the asset belongs to."
+                assetName:
+                  type: string
+                  description: "The name of the asset you want to get details for."
+                applicationIds:
+                  type: array
+                  items:
+                    type: string
+                  description: "Application identifiers sourced from the corresponding key in the globalassets GET endpoint."
+      responses:
+        '200':
+          description: "Returns a list of vulnerabilities associated with the asset."
+          content:
+            application/json:
+              schema:
+                $schema: "http://json-schema.org/draft-07/schema#"
+                description: "Schema for a list of vulnerabilities associated with a device."
+                type: array
+                items:
+                  type: object
+                  properties:
+                    cveList:
+                      type: array
+                      items:
+                        type: string
+                        pattern: "^CVE-\\d{4}-\\d+$"
+                      description: "List of Common Vulnerabilities and Exposures (CVE) identifiers related to the vulnerability."
+                    name:
+                      type: string
+                      description: "Name of the vulnerability."
+                    applicationName:
+                      type: string
+                      description: "Comma-separated list of application or device identifiers affected by this vulnerability."
+                    description:
+                      type: string
+                      description: "Detailed description of the vulnerability, which may include HTML content for links."
+                    vulnerabilityRiskLevel:
+                      type: integer
+                      description: "Numerical level indicating the risk associated with the vulnerability. It ranges typically from 1 (lowest) to 5 (highest)."
+                    cvssScore:
+                      type: number
+                      description: "CVSS score of the vulnerability, indicating the severity."
+        '401':
+          description: Unauthorized
