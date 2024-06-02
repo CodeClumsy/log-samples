@@ -1,0 +1,67 @@
+openapi: 3.0.1
+info:
+  title: Retrieve vulnerability information for a specific asset
+  version: 1.0.4
+  description: Retrieve vulnerability information for a specific asset
+servers:
+  - url: https://staging.argosecure.com/
+paths:
+  /api/globalassetdetails:
+    post:
+      operationId: GetAssetDetails
+      summary: Retrieve vulnerability information for a specific asset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tenantId:
+                  type: string
+                  description: "The Tenant ID the asset belongs to."
+                assetName:
+                  type: string
+                  description: "The name of the asset you want to get details for."
+                applicationIds:
+                  type: array
+                  items:
+                    type: string
+                  description: "Application identifiers sourced from the corresponding key in the globalassets GET endpoint."
+                  default: 
+                    - "833"
+      responses:
+        '200':
+          description: "Returns a list of vulnerabilities associated with the asset."
+          content:
+            application/json:
+              schema:
+                $schema: "http://json-schema.org/draft-07/schema#"
+                description: "Schema for a list of vulnerabilities associated with a device."
+                type: array
+                items:
+                  type: object
+                  properties:
+                    cveList:
+                      type: array
+                      items:
+                        type: string
+                        pattern: "^CVE-\\d{4}-\\d+$"
+                      description: "List of Common Vulnerabilities and Exposures (CVE) identifiers related to the vulnerability."
+                    name:
+                      type: string
+                      description: "Name of the vulnerability."
+                    applicationName:
+                      type: string
+                      description: "Comma-separated list of application or device identifiers affected by this vulnerability."
+                    description:
+                      type: string
+                      description: "Detailed description of the vulnerability, which may include HTML content for links."
+                    vulnerabilityRiskLevel:
+                      type: integer
+                      description: "Numerical level indicating the risk associated with the vulnerability. It ranges typically from 1 (lowest) to 5 (highest)."
+                    cvssScore:
+                      type: number
+                      description: "CVSS score of the vulnerability, indicating the severity."
+        '401':
+          description: Unauthorized
