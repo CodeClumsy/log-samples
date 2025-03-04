@@ -1,0 +1,97 @@
+{
+
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+
+  "contentVersion": "1.0.0",
+
+  "parameters": {
+
+    "applicationName": {
+
+      "type": "string",
+
+      "defaultValue": "MyApplication"
+
+    },
+
+    "appSecret": {
+
+      "type": "string",
+
+      "secure": true
+
+    }
+
+  },
+
+  "resources": [
+
+    {
+
+      "type": "Microsoft.AzureActiveDirectory/applications",
+
+      "name": "[parameters('applicationName')]",
+
+      "apiVersion": "2016-03-01",
+
+      "properties": {
+
+        "displayName": "[parameters('applicationName')]",
+
+        "availableToOtherTenants": false,
+
+        "requiredResourceAccess": [
+
+          {
+
+            "resourceAppId": "00000002-0000-0ff1-ce00-000000000000",  
+
+            "resourceAccess": [
+
+              { "id": "user.read" } 
+
+            ]
+
+          }
+
+        ],
+
+        "oauth2Permissions": [
+
+          {
+
+            "clientId": "your-client-id", 
+
+            "adminConsentDescription": "Access user information", 
+
+            "userConsentDescription": "Access user information"
+
+          }
+
+        ],
+
+        "web": {
+
+          "redirectUris": ["https://your-redirect-uri/"]
+
+        },
+
+        "keyCredentials": [
+
+          {
+
+            "key": "[parameters('appSecret')]",
+
+            "endDate": "2025-01-01T00:00:00Z"
+
+          }
+
+        ]
+
+      }
+
+    }
+
+  ]
+
+}
