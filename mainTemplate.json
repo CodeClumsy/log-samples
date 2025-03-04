@@ -12,46 +12,29 @@
   },
   "resources": [
     {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2021-04-01",
-      "name": "AppRegistrationDeployment",
+      "type": "Microsoft.Graph/applications",
+      "apiVersion": "1.0",
+      "name": "[parameters('appName')]",
       "properties": {
-        "mode": "Incremental",
-        "expressionEvaluationOptions": {
-          "scope": "inner"
-        },
-        "template": {
-          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-          "contentVersion": "1.0.0.0",
-          "resources": [
-            {
-              "type": "Microsoft.Graph/applications",
-              "apiVersion": "1.0",
-              "name": "[parameters('appName')]",
-              "properties": {
-                "displayName": "[parameters('appName')]",
-                "requiredResourceAccess": [
-                  {
-                    "resourceAppId": "00000003-0000-0000-c000-000000000000",
-                    "resourceAccess": [
-                      {
-                        "id": "df021288-bdef-4463-88db-98f22de89214",
-                        "type": "Role"
-                      }
-                    ]
-                  }
-                ]
+        "displayName": "[parameters('appName')]",
+        "requiredResourceAccess": [
+          {
+            "resourceAppId": "00000003-0000-0000-c000-000000000000",
+            "resourceAccess": [
+              {
+                "id": "df021288-bdef-4463-88db-98f22de89214",
+                "type": "Role"
               }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       }
     }
   ],
   "outputs": {
     "appId": {
       "type": "string",
-      "value": "[reference(parameters('appName')).appId]"
+      "value": "[resourceId('Microsoft.Graph/applications', parameters('appName'))]"
     }
   }
 }
