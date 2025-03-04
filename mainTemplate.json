@@ -4,8 +4,9 @@
   "parameters": {
     "appName": {
       "type": "string",
+      "defaultValue": "ArgoSecure",
       "metadata": {
-        "description": "ArgoSecure"
+        "description": "The name of the App Registration"
       }
     }
   },
@@ -31,7 +32,7 @@
                 "displayName": "[parameters('appName')]",
                 "requiredResourceAccess": [
                   {
-                    "resourceAppId": "00000003-0000-0000-c000-000000000000", 
+                    "resourceAppId": "00000003-0000-0000-c000-000000000000",
                     "resourceAccess": [
                       {
                         "id": "df021288-bdef-4463-88db-98f22de89214",
