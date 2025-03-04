@@ -51,7 +51,7 @@
   "outputs": {
     "appId": {
       "type": "string",
-      "value": "[reference(parameters('appName')).appId]"
+      "value": "[parameters('appName')]"
     }
   }
 }
