@@ -75,7 +75,7 @@ resource deploymentScript 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
       {
         name: 'appName'
         value: appName
-      },
+      }
       {
         name: 'subscriptionId'
         value: subscriptionId
